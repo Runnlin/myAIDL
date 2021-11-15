@@ -17,11 +17,11 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
     public override fun onTransact(code: Int, data: Parcel, reply: Parcel?, flags: Int): Boolean {
         when (code) {
             INTERFACE_TRANSACTION -> {
-                reply!!.writeString(Companion.interfaceDescriptor)
+                reply!!.writeString(Companion.getInterfaceDescriptor())
                 return true
             }
             TRANSACTION_onNewBookArrived -> {
-                data.enforceInterface(Companion.interfaceDescriptor)
+                data.enforceInterface(Companion.getInterfaceDescriptor())
                 val _arg0: Book?
                 _arg0 = if (0 != data.readInt()) {
                     Book.CREATOR.createFromParcel(data)
@@ -47,7 +47,7 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
             val _data = Parcel.obtain()
             val _reply = Parcel.obtain()
             try {
-                _data.writeInterfaceToken(interfaceDescriptor)
+                _data.writeInterfaceToken(getInterfaceDescriptor())
                 if (newBook != null) {
                     _data.writeInt(1)
                     newBook.writeToParcel(_data, 0)
@@ -73,7 +73,7 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
             if (obj == null) {
                 return null
             }
-            val iin = obj.queryLocalInterface(interfaceDescriptor)
+            val iin = obj.queryLocalInterface(getInterfaceDescriptor())
             // 如果是同一个进程,也就是说进程内通信的话,我们就返回Stub对象;
             return if (iin != null && iin is IOnNewBookArrivedListener) {
                 iin as IOnNewBookArrivedListener?
@@ -85,6 +85,6 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
     }
 
     init {
-        attachInterface(this, Companion.interfaceDescriptor)
+        attachInterface(this, Companion.getInterfaceDescriptor())
     }
 }

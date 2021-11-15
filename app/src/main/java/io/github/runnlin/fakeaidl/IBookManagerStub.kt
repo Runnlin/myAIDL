@@ -81,7 +81,7 @@ abstract class IBookManagerStub() : IBookManager, Binder() {
             TRANSACTION_registerListener -> {
                 data.enforceInterface(DESCRIPTOR)
                 val _arg0: IOnNewBookArrivedListener
-                _arg0 = asInterface(data.readStrongBinder() as Binder?)
+                    = asInterface(data.readStrongBinder()) as IOnNewBookArrivedListener
                 registerListener(_arg0)
                 reply!!.writeNoException()
                 return true
@@ -89,7 +89,7 @@ abstract class IBookManagerStub() : IBookManager, Binder() {
             TRANSACTION_unregisterListener -> {
                 data.enforceInterface(DESCRIPTOR)
                 val _arg0: IOnNewBookArrivedListener
-                _arg0 = asInterface(data.readStrongBinder() as Binder?)
+                    = asInterface(data.readStrongBinder()) as IOnNewBookArrivedListener
                 unregisterListener(_arg0)
                 reply!!.writeNoException()
                 return true
@@ -111,16 +111,16 @@ abstract class IBookManagerStub() : IBookManager, Binder() {
          **************************************************/
 
 
-        fun asInterface(obj: Binder?): IBookManager? {
+        fun asInterface(obj: IBinder?): IBookManager? {
             if (null == obj)
                 return null
 
-            var iin = obj.queryLocalInterface(DESCRIPTOR) as IInterface
+            val iin = obj.queryLocalInterface(DESCRIPTOR) as IInterface
             // 如果是同一个进程
-            if (iin is IBookManager) {
-                return iin
+            return if (iin is IBookManager) {
+                iin
             } else {
-                return Proxy(obj)
+                Proxy(obj)
             }
 
         }

@@ -1,7 +1,7 @@
 package io.github.runnlin.fakeaidl
 
 import android.os.IInterface
-import io.github.runnlin.data.Book
+import dt.sprint.fackaidl.data.Book
 
 interface IOnNewBookArrivedListener:IInterface {
 
