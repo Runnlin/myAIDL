@@ -5,7 +5,6 @@ import android.os.Parcelable
 
 /**
  * 书的序列化类
- * Created by yanping on 16/7/20.
  */
 class Book : Parcelable {
     var bookId: Int

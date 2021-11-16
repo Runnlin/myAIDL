@@ -1,12 +1,8 @@
-package dt.sprint.fackaidl.fakeaidl
+package io.github.runnlin.fakeaidl
 
 import android.os.*
 import io.github.runnlin.data.Book
-import io.github.runnlin.fakeaidl.IOnNewBookArrivedListener
 
-/**
- * Created by yanping on 16/7/20.
- */
 abstract class IOnNewBookArrivedListenerStub : Binder(),
     IOnNewBookArrivedListener {
     override fun asBinder(): IBinder {
@@ -22,8 +18,7 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
             }
             TRANSACTION_onNewBookArrived -> {
                 data.enforceInterface(Companion.getInterfaceDescriptor())
-                val _arg0: Book?
-                _arg0 = if (0 != data.readInt()) {
+                val _arg0: Book? = if (0 != data.readInt()) {
                     Book.CREATOR.createFromParcel(data)
                 } else {
                     null

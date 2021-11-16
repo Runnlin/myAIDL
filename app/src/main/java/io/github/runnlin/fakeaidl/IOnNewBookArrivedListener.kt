@@ -4,8 +4,6 @@ import android.os.IInterface
 import io.github.runnlin.data.Book
 
 interface IOnNewBookArrivedListener:IInterface {
-
     @Throws
     fun onNewBookArrived(newBook: Book)
-
 }
