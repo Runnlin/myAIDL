@@ -1,4 +1,4 @@
-package dt.sprint.fackaidl.data
+package io.github.runnlin.data
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -38,7 +38,7 @@ class Book : Parcelable {
     companion object {
         @JvmField
         val CREATOR: Parcelable.Creator<Book?> = object : Parcelable.Creator<Book?> {
-            override fun createFromParcel(source: Parcel): Book? {
+            override fun createFromParcel(source: Parcel): Book {
                 return Book(source)
             }
 

@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.IBinder
 import android.util.Log
 
-class mService: Service() {
+class MService: Service() {
 
     val TAG = "server:"
 

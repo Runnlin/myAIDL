@@ -1,7 +1,7 @@
 package dt.sprint.fackaidl.fakeaidl
 
 import android.os.*
-import dt.sprint.fackaidl.data.Book
+import io.github.runnlin.data.Book
 import io.github.runnlin.fakeaidl.IOnNewBookArrivedListener
 
 /**
@@ -28,7 +28,9 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
                 } else {
                     null
                 }
-                this.onNewBookArrived(_arg0)
+                if (_arg0 != null) {
+                    this.onNewBookArrived(_arg0)
+                }
                 reply!!.writeNoException()
                 return true
             }
@@ -43,17 +45,13 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
         }
 
         @Throws(RemoteException::class)
-        override fun onNewBookArrived(newBook: Book?) {
+        override fun onNewBookArrived(newBook: Book) {
             val _data = Parcel.obtain()
             val _reply = Parcel.obtain()
             try {
                 _data.writeInterfaceToken(getInterfaceDescriptor())
-                if (newBook != null) {
-                    _data.writeInt(1)
-                    newBook.writeToParcel(_data, 0)
-                } else {
-                    _data.writeInt(0)
-                }
+                _data.writeInt(1)
+                newBook.writeToParcel(_data, 0)
                 mRemote.transact(TRANSACTION_onNewBookArrived, _data, _reply, 0)
                 _reply.readException()
             } finally {
@@ -76,7 +74,7 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
             val iin = obj.queryLocalInterface(getInterfaceDescriptor())
             // 如果是同一个进程,也就是说进程内通信的话,我们就返回Stub对象;
             return if (iin != null && iin is IOnNewBookArrivedListener) {
-                iin as IOnNewBookArrivedListener?
+                iin
             } else Proxy(obj)
             // 如果不是同一个进程,那么我们就返回一个 Stub.Proxy 的 (Stub代理)对象;
         }

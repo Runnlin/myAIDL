@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".server.mService"
+        <service android:name=".server.MService"
             android:process=":remote"/>
     </application>
 

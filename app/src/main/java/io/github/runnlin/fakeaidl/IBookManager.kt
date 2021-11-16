@@ -1,9 +1,8 @@
 package io.github.runnlin.fakeaidl
 
-import android.os.IBinder
 import android.os.IInterface
 import android.os.RemoteException
-import dt.sprint.fackaidl.data.Book
+import io.github.runnlin.data.Book
 
 interface IBookManager: IInterface {
 
