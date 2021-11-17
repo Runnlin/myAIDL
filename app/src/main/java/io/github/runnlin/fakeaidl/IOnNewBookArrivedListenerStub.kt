@@ -33,8 +33,7 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
         return super.onTransact(code, data, reply, flags)
     }
 
-    private class Proxy internal constructor(private val mRemote: IBinder) :
-        IOnNewBookArrivedListener {
+    private class Proxy(private val mRemote: IBinder) : IOnNewBookArrivedListener {
         override fun asBinder(): IBinder {
             return mRemote
         }
@@ -58,7 +57,7 @@ abstract class IOnNewBookArrivedListenerStub : Binder(),
 
     companion object {
 
-        fun getInterfaceDescriptor():String {
+        fun getInterfaceDescriptor(): String {
             return "io.github.runnlin.fakeaidl.IOnNewBookArrivedListener"
         }
 
